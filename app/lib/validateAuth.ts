@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 export const validateAuth = async () => {
   console.log("Validating the user!");
   console.log(
-    " process.env.LOCAL_BACKEND_URL::",
+    " process.env.BACKEND_URL::",
     process.env.BACKEND_URL
   );
 

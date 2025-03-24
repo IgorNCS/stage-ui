@@ -62,7 +62,7 @@ export const signupAction = async (prevState: unknown, formData: FormData) => {
   const password = formData.get("password");
 
   try {
-    const res = await axiosApi.post("/user/register", { name, email, password });
+    const res = await axiosApi.post("/user", { name, email, password });
     const data = await res.data;
     const cookieStore = await cookies();
     const cookieData = setCookieParser(res.headers["set-cookie"]!);
