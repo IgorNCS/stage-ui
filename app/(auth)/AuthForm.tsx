@@ -55,6 +55,32 @@ const AuthForm = ({ isSignup, action }: props) => {
           </label>
           <input type="email" id="email" name="email" className={inputStyle} />
         </motion.div>
+        {isSignup && (
+          <>
+            <motion.div
+              className="w-full"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5 }}
+            >
+              <label className="text-sm font-light my-4" htmlFor="cpf">
+                CPF
+              </label>
+              <input type="text" id="cpf" name="cpf" className={inputStyle} />
+            </motion.div>
+            <motion.div
+              className="w-full"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5 }}
+            >
+              <label className="text-sm font-light my-4" htmlFor="birthday">
+                Birth Date
+              </label>
+              <input type="date" id="birthday" name="birthday" className={inputStyle} />
+            </motion.div>
+          </>
+        )}
         <motion.div
           className="w-full"
           initial={{ opacity: 0, x: -20 }}

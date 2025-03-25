@@ -21,5 +21,5 @@ export const middleware = async (req: NextRequest) => {
 };
 
 export const config: MiddlewareConfig = {
-  matcher: "/profile",
+  matcher: "/dashboard",
 };

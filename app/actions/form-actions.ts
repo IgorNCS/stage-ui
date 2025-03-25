@@ -6,15 +6,12 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { axiosApi } from "../lib/axios";
 
-
 export const loginAction = async (prevState: unknown, formData: FormData) => {
-  console.log(prevState);
 
   const validateFields = LoginFormSchema.safeParse({
     email: formData.get("email"),
     password: formData.get("password"),
   });
-  console.log("Fields validated");
 
   if (!validateFields.success) {
     return { errors: validateFields.error.flatten().fieldErrors };
@@ -24,8 +21,11 @@ export const loginAction = async (prevState: unknown, formData: FormData) => {
   const password = formData.get("password");
 
   try {
+    console.log('login')
     const res = await axiosApi.post("/auth/login", { email, password });
-    const data = await res.data;
+
+    const data = await res.data.access_token;
+    const user = await res.data.user;
     console.log(res.headers["set-cookie"]);
     const cookieStore = await cookies();
     const cookieData = setCookieParser(res.headers["set-cookie"]!);
@@ -35,9 +35,13 @@ export const loginAction = async (prevState: unknown, formData: FormData) => {
       //@ts-ignore
       cookieStore.set(cookie.name, cookie.value, { ...cookie })
     );
-    console.log(data);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    cookieStore.set("user", JSON.stringify(user), { path: "/" });
+    cookieStore.set("access_token", data, { path: "/" });
+    
 
-    redirect("/register");
+    redirect("/area");
   } catch (error) {
     console.log("Error occurred during login: ", error);
     throw error;
@@ -60,9 +64,22 @@ export const signupAction = async (prevState: unknown, formData: FormData) => {
   const name = formData.get("name");
   const email = formData.get("email");
   const password = formData.get("password");
+  const cpf = formData.get("cpf");
+  const birthday = formData.get("birthday");
+  const confirmPassword = formData.get("confirmPassword");
+
+  const role = "EMPLOYEER";
 
   try {
-    const res = await axiosApi.post("/user", { name, email, password });
+    const res = await axiosApi.post("/user", {
+      name,
+      email,
+      password,
+      role,
+      cpf,
+      birthday,
+      confirmPassword,
+    });
     const data = await res.data;
     const cookieStore = await cookies();
     const cookieData = setCookieParser(res.headers["set-cookie"]!);

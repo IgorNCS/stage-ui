@@ -1,5 +1,8 @@
 import { cookies } from "next/headers";
 import { axiosApi } from "../lib/axios";
+import Sidebar from "../components/sidebar";
+import SidebarWrapper from "../components/SidebarWrapper";
+import { Box } from "@chakra-ui/react";
 
 
 type Response = {
@@ -10,25 +13,17 @@ type Response = {
     email: string;
   };
 };
-const getUser = async () => {
-  const cookieStore = await cookies();
 
-  const res = await axiosApi.get("/user/me", {
-    headers: {
-      Authorization: `access_token=${
-        cookieStore.get("access_token")?.value
-      } ,refresh_token=${cookieStore.get("refresh_token")?.value}`,
-    },
-    withCredentials: true,
-  });
-  const data = (await res.data) as Response;
-  console.log(data);
-  return data;
-};
-const ProfilePage = async () => {
-  const user = await getUser();
-  return <ProfileCard {...user.user} />;
+const DashboardPage = () => {
+  return (
+    <div>
+      <Box bg='tomato' w='100%' p={4} color='white'>
+        This is the Box
+      <SidebarWrapper />
+      </Box>
+      <h1>Olá!</h1>
+    </div>
+  );
 };
 
-export default ProfilePage;
-
+export default DashboardPage;
