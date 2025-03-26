@@ -85,7 +85,7 @@ export default function SprintDetail() {
                 <Box bg='gray.200' w='100%' h='100vh' p={4} color={'gray.900'}>
                     <Flex w="100%" my="6" maxW={1600} mx="auto" px="60">
                         <Box bg='gray.200' w='100%' h='100vh' p={4} color={'gray.900'}>
-                            <Heading>Sprint</Heading>
+                            <Heading>Documentação</Heading>
                             <Divider my="6" borderColor="gray.700" />
                             <Flex
                                 direction="column"
@@ -94,7 +94,7 @@ export default function SprintDetail() {
                             >
                                 <Icon as={TbMapOff} boxSize={150} />
                                 <Heading color={'purple.900'}>
-                                    Sprint não encontrada
+                                    Documentation não encontrada
                                 </Heading>
                             </Flex>
                         </Box>
@@ -105,7 +105,7 @@ export default function SprintDetail() {
                 <Box bg='gray.200' w='100v' height='100%' p={4} color={'gray.900'} mb={4}>
                     <Flex w="100%" my="6" maxW={1600} mx="auto" px="60">
                         <Box bg='gray.200' w='100%' height='100vh' p={4} color={'gray.900'}>
-                            <Heading>Sprint</Heading>
+                            <Heading>Documentação</Heading>
                             <Divider my="6" borderColor="gray.700" />
                             <Card
                                 direction="column"

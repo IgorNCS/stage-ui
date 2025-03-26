@@ -31,6 +31,7 @@ import "@uiw/react-md-editor/markdown-editor.css";
 import "@uiw/react-markdown-preview/markdown.css";
 import dynamic from "next/dynamic";
 import { IoMdCloseCircleOutline } from 'react-icons/io';
+import DocumentationHTTPService, { IDocumentCreate } from '@/app/lib/request/documentationHTTPService';
 
 
 const MDEditor = dynamic(
@@ -84,17 +85,28 @@ function IncludeDocumentationModal({ isOpen, onClose }: IncludeDocumentationModa
                 "processes": ["d0090bd5-7c58-40ed-95de-05edb9bc5663"],
                 "active": true
             }
-            const request = {
-
-                processName: data.processName,
-                areas: data.areas,
-                responsables: data.responsables,
+            const request:IDocumentCreate = {
+                // name: string,
+                // documentText: string,
+                // userId: string,
+                // url_image?: string,
+                // tools?: string[],
+                // areas?: string[],
+                // processes?: string[]
+                
+                name: data.documentName,
+                documentText:JSON.stringify(document),
+                userId:data.employersId,
+                url_image:data.url_image,
+                areas: selectedAreas.map((area: any) => area.id),
                 tools: data.tools ? data.tools.split(",").map(tool => tool.trim()) : [],
-                processDescription: data.processDescription,
+                processes:selectedProcesses.map((process: any) => process.id),
+                // responsables: data.documentName,
+                // processDescription: data.processDescription,
+
             };
-            console.log(data, request)
-            return
-            // const response = await DevolutionHTTPService.create(request);
+            
+            const response = await DocumentationHTTPService.create(request);
 
             toast({
                 title: 'Processo incluído com sucesso!',
@@ -106,6 +118,7 @@ function IncludeDocumentationModal({ isOpen, onClose }: IncludeDocumentationModa
 
             onClose();
         } catch (error: AxiosError | any) {
+            console.log(error)
             const display = error.response?.data?.message || 'Erro ao incluir processo.';
             toast({
                 title: display,
@@ -120,16 +133,17 @@ function IncludeDocumentationModal({ isOpen, onClose }: IncludeDocumentationModa
     useEffect(() => {
         getAllArea();
         getAllProcess();
+        getAllEmployers();
     }, []);
 
     useEffect(() => {
-        console.log(selectedAreas)
+        getAllProcess()
         getAllEmployers();
     }, [area]);
 
     useEffect(() => {
-        console.log(selectedAreas)
-        // getAllEmployers();
+        getAllProcess()
+        getAllEmployers();
     }, [selectedAreas]);
 
 
@@ -149,6 +163,7 @@ function IncludeDocumentationModal({ isOpen, onClose }: IncludeDocumentationModa
     async function getAllEmployers() {
         try {
             const areaId = area || '';
+            console.log('employer',areaId)
             if (areaId === '') return
             const response = await AreaHTTPService.getEmployees(areaId);
             setEmployersOptions(response.data);
@@ -162,6 +177,7 @@ function IncludeDocumentationModal({ isOpen, onClose }: IncludeDocumentationModa
     async function getAllProcess() {
         try {
             const areaId = area || '';
+            console.log(selectedAreas)
             if (areaId === '') return
             const response = await ProcessHTTPService.getAll()
             setProcessOptions(response.data.list);
@@ -196,9 +212,9 @@ function IncludeDocumentationModal({ isOpen, onClose }: IncludeDocumentationModa
                             <GridItem colSpan={1}>
                                 <FormLabel>Nome da Documentação</FormLabel>
                                 <Input
-                                    placeholder="Nome do Processo"
+                                    placeholder="Nome da documentação"
                                     size="lg"
-                                    {...register('processName')}
+                                    {...register('documentName')}
                                 />
                             </GridItem>
                             <GridItem colSpan={1}>
@@ -297,6 +313,16 @@ function IncludeDocumentationModal({ isOpen, onClose }: IncludeDocumentationModa
                                     </Tag>
                                 ))}
                             </GridItem>
+                            <GridItem colSpan={1}>
+                                <FormLabel>Responsável</FormLabel>
+                                <Select placeholder='Selecione Responsavel' {...register('employersId')} onChange={(e) => setEmployers(e.target.value)}>
+                                    {employersOptions.map((employers) => (
+                                        <option key={employers.id} value={employers.id}>
+                                            {employers.name}
+                                        </option>
+                                    ))}
+                                </Select>
+                            </GridItem>
 
                             <GridItem colSpan={2}>
                                 <FormLabel>Documente o processo</FormLabel>
@@ -313,7 +339,7 @@ function IncludeDocumentationModal({ isOpen, onClose }: IncludeDocumentationModa
                         type="submit"
                         onClick={handleSubmit(submitForm, onError)}
                     >
-                        Incluir Processo
+                        Incluir Documentação
                     </Button>
                 </ModalFooter>
             </ModalContent>

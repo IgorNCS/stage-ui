@@ -31,12 +31,10 @@ export const loginAction = async (prevState: unknown, formData: FormData) => {
     const cookieData = setCookieParser(res.headers["set-cookie"]!);
 
     cookieData.forEach((cookie: any) =>
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-ignore
+
       cookieStore.set(cookie.name, cookie.value, { ...cookie })
     );
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //@ts-ignore
+
     cookieStore.set("user", JSON.stringify(user), { path: "/" });
     cookieStore.set("access_token", data, { path: "/" });
     
@@ -85,8 +83,6 @@ export const signupAction = async (prevState: unknown, formData: FormData) => {
     const cookieData = setCookieParser(res.headers["set-cookie"]!);
 
     cookieData.forEach((cookie: any) =>
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-ignore
       cookieStore.set(cookie.name, cookie.value, { ...cookie })
     );
     redirect("/profile");

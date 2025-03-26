@@ -7,14 +7,14 @@ export const middleware = async (req: NextRequest) => {
   const cookieStore = await cookies();
   if (!cookieStore.get("refresh_token")) {
     const url = req.nextUrl.clone();
-    url.pathname = "/login";
+    url.pathname = "/auth/login";
     return NextResponse.redirect(url);
   }
 
   const authData = await validateAuth();
   if (!authData || !authData.success) {
     const url = req.nextUrl.clone();
-    url.pathname = "/login";
+    url.pathname = "/auth/login";
     return NextResponse.redirect(url);
   }
   return NextResponse.next();

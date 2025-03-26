@@ -1,4 +1,4 @@
-"use client";
+"use client"; // Adicione esta linha no topo do arquivo
 
 
 import { Box, Button, Card, CardBody, CardFooter, Icon, Image, Stack, Text, VStack } from "@chakra-ui/react";
@@ -11,9 +11,13 @@ import { MdNotificationsOff } from "react-icons/md";
 import Link from "next/link";
 import { IoMdMap } from "react-icons/io";
 import { TbMapOff } from "react-icons/tb";
-import IncludeAreaModal from "../components/forms/includeArea";
+
 import { RiAddLine } from "react-icons/ri";
 import Cookies from 'js-cookie';
+import IncludeProcessModal from "../components/forms/includeProcess";
+import ProcessHTTPService from "../lib/request/processHTTPService";
+import { BsFillDiagram3Fill } from "react-icons/bs";
+
 
 type Response = {
     message: string;
@@ -24,9 +28,9 @@ type Response = {
     };
 };
 
-const AreaPage = () => {
+const ProcessPage = () => {
     const [loading, setLoading] = useState(false);
-    const [areas, setAreas] = useState([]);
+    const [processes, setProcesses] = useState([]);
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(10);
     const [initialDate, setInitialDate] = useState<string | undefined>(undefined);
@@ -41,9 +45,9 @@ const AreaPage = () => {
     async function getAll(page: number) {
         setLoading(true);
         try {
-            const response = await AreaHTTPService.getAll(page, limit, initialDate, finalDate);
+            const response = await ProcessHTTPService.getAll({page, limit, initialDate, finalDate});
             const list = response.data.list;
-            setAreas(list);
+            setProcesses(list);
         } catch (error) {
             console.log(error);
         } finally {
@@ -60,7 +64,7 @@ const AreaPage = () => {
                 <Flex w="100%" my="6" maxW={1600} mx="auto" px="60">
                     <Box bg='gray.200' w='100%' height='100vh' p={4} color={'gray.900'}>
                         <Flex justifyContent="space-between" alignItems="center">
-                            <Heading>Areas</Heading>
+                            <Heading>Processo</Heading>
                             {user && user.role !== 'ADMIN' ? (
                                 <Button
                                     mt={1}
@@ -71,7 +75,7 @@ const AreaPage = () => {
                                     _hover={{ bg: `purple.800` }}
                                     onClick={() => setIncludeModalOpen(true)}
                                 >
-                                    Nova Area
+                                    Novo Processo
                                 </Button>
                             ) : null}
                         </Flex>
@@ -79,17 +83,17 @@ const AreaPage = () => {
                         <Divider my="6" borderColor="gray.700" />
                         {loading ? (
                             <p>Loading...</p>
-                        ) : areas?.length === 0 ? (
+                        ) : processes?.length === 0 ? (
                             <Box textAlign="center" w="100%" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                                <TbMapOff size={150} color="purple.900" />
+                                <BsFillDiagram3Fill size={150} color="purple.900" />
                                 <Heading color={'purple.900'} ml={2}>
-                                    Nenhuma Area cadastrado
+                                    Nenhum Processo cadastrado
                                 </Heading>
                             </Box>
                         ) : (
                             <>
                                 <Flex wrap="wrap" justifyContent="space-between">
-                                    {areas?.map((area, index) => (
+                                    {processes?.map((area, index) => (
                                         <Card
                                             key={index}
                                             direction="column"
@@ -112,11 +116,12 @@ const AreaPage = () => {
                                                     <Text py="1">{area.description}</Text>
                                                     <Heading size="xs">Responsáveis:</Heading>
                                                     <Text py="1">
-                                                        {area.responsables.map(responsavel => responsavel.name).join(", ")}
+                                                        {/* {JSON.stringify(area)} */}
+                                                        {area.responsible_people.map(responsavel => responsavel.name).join(", ")}
                                                     </Text>
                                                 </CardBody>
                                                 <CardFooter>
-                                                    <Link href={`/area/${area.id}`}>
+                                                    <Link href={`/process/${area.id}`}>
                                                         <Button variant="link" colorScheme="blue" mr={4}>
                                                             Ir para
                                                         </Button>
@@ -131,7 +136,7 @@ const AreaPage = () => {
                                             </Stack>
                                         </Card>
                                     ))}
-                                    {areas?.length === 0 && (
+                                    {processes?.length === 0 && (
                                         <Box textAlign="center" w="100%">
                                             <IoMdMap size={150} color="purple.900" />
                                             <Heading color="purple.900">Nenhuma Área cadastrada</Heading>
@@ -140,7 +145,7 @@ const AreaPage = () => {
                                 </Flex>
                             </>
                         )}
-                        <IncludeAreaModal
+                        <IncludeProcessModal
                             isOpen={isIncludeModalOpen}
                             onClose={() => setIncludeModalOpen(false)}
                         // setUpdate={() => setUpdateCreate(true)}
@@ -152,6 +157,6 @@ const AreaPage = () => {
     );
 };
 
-export default AreaPage;
+export default ProcessPage;
 
 

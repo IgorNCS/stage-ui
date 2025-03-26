@@ -1,4 +1,3 @@
-// app/produtos/[id]/page.js
 "use client";
 import CombinedBarChart from "@/app/Charts/HorizontalBarChart";
 import PieChart from "@/app/Charts/PieCharts";
@@ -12,8 +11,9 @@ import { MdNotificationsOff } from "react-icons/md";
 import { TbMapOff, TbRoadOff } from "react-icons/tb";
 import { format } from 'date-fns';
 import { IoMdEye, IoIosPeople } from "react-icons/io";
-import { SiAlwaysdata } from "react-icons/si";
+
 import { RiAddLine } from "react-icons/ri";
+import { BsFillDiagram3Fill } from "react-icons/bs";
 
 
 export default function DetalhesProduto() {
@@ -140,12 +140,12 @@ export default function DetalhesProduto() {
                                     <Box bg='gray.200' w='100%' p={4} color={'gray.900'}>
                                         <Flex>
                                             <Box w={"50%"} bgColor={'red.200'}>
-                                                <Box textAlign="center"> {/* Centraliza o conteúdo horizontalmente */}
+                                                <Box textAlign="center"> 
                                                     <Heading mb={8}>Processos</Heading>
                                                     <Box>
                                                         {area?.processes && area?.processes.length > 0 ? (
                                                             area?.processes?.map((process, index) => (
-                                                                <Box key={index} display="inline-block" mr={2}> {/* Centraliza os Badges horizontalmente */}
+                                                                <Box key={index} display="inline-block" mr={2}>
                                                                     <Badge
                                                                         colorScheme='blue'
                                                                         bgColor={bgStatus(process.status)}
@@ -158,7 +158,7 @@ export default function DetalhesProduto() {
                                                             ))
                                                         ) : (
                                                             <Flex direction="column" justifyContent="center" alignItems="center">
-                                                                <Icon as={SiAlwaysdata} boxSize={150} color={'purple.900'} opacity={0.2} />
+                                                                <Icon as={BsFillDiagram3Fill} boxSize={150} color={'purple.900'} opacity={0.2} />
                                                                 <Heading color={'purple.900'}>
                                                                     Nenhum Processo Encontrado
                                                                 </Heading>

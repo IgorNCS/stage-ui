@@ -1,7 +1,7 @@
-"use client"; // Adicione esta linha no topo do arquivo
+"use client";
 
 
-import { AbsoluteCenter, Avatar, Badge, Box, Button, Card, CardBody, CardFooter, CardHeader, FormControl, FormLabel, GridItem, Icon, IconButton, Image, Input, Select, Stack, Text, VStack } from "@chakra-ui/react";
+import { AbsoluteCenter, Avatar, Badge, Box, Button, Card, CardBody, CardFooter, CardHeader, FormControl, FormLabel, GridItem, Icon, IconButton, Image, Input, Select, Skeleton, SkeletonCircle, SkeletonText, Stack, Text, VStack } from "@chakra-ui/react";
 import { Flex, Spacer } from '@chakra-ui/react'
 import { Divider } from '@chakra-ui/react'
 import { Heading } from '@chakra-ui/react'
@@ -30,8 +30,8 @@ const MDEditor = dynamic(
     { ssr: false }
 );
 
-const AreaPage = () => {
-    const [loading, setLoading] = useState(false);
+const DocumentPage = () => {
+    const [loading, setLoading] = useState(true);
     const [documentations, setDocumentations] = useState([]);
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(10);
@@ -59,13 +59,9 @@ const AreaPage = () => {
     async function getAll(page: number) {
         setLoading(true);
         try {
-            console.log('aqui foi')
             const response = await DocumentationHTTPService.getAll();
-            console.log('aqui foi2')
-            console.log(response.data);
             const list = response.data;
-            const newList = [...list, ...list, ...list];
-            setDocumentations(newList);
+            setDocumentations(list);
 
         } catch (error) {
             console.log(error);
@@ -96,7 +92,6 @@ const AreaPage = () => {
                     <Box bg='gray.200' w='100%' height='100vh' p={4} color={'gray.900'}>
                         <Flex justifyContent="space-between" alignItems="center">
                             <Heading>Documentações</Heading>
-                            {JSON.stringify(cookies)}
                             <Button
                                 mt={1}
                                 size="md"
@@ -116,7 +111,74 @@ const AreaPage = () => {
                         {/* <MDEditor value={value} onChange={setValue} /> */}
 
                         {loading ? (
-                            <p>Loading...</p>
+                            // <p>Loading...</p>
+                            <Box>
+                                <Card>
+                                    <CardHeader mb={-2}>
+                                        <Flex justifyContent="space-between" alignItems="center">
+                                            <Skeleton w="150px" h="40px" />
+                                        </Flex>
+                                    </CardHeader>
+                                    <Flex>
+                                        <CardBody flex={1}>
+                                            <FormControl>
+                                                <FormLabel>
+                                                    <SkeletonText noOfLines={1} w="50px" />
+                                                </FormLabel>
+                                                <Skeleton h="40px" />
+                                            </FormControl>
+                                        </CardBody>
+                                        <CardBody flex={1}>
+                                            <FormControl>
+                                                <FormLabel>
+                                                    <SkeletonText noOfLines={1} w="80px" />
+                                                </FormLabel>
+                                                <Skeleton h="40px" />
+                                            </FormControl>
+                                        </CardBody>
+                                        <CardBody flex={1}>
+                                            <FormControl>
+                                                <FormLabel>
+                                                    <SkeletonText noOfLines={1} w="80px" />
+                                                </FormLabel>
+                                                <Skeleton h="40px" />
+                                            </FormControl>
+                                        </CardBody>
+                                        <CardBody flex={1}>
+                                            <GridItem colSpan={1}>
+                                                <FormLabel>
+                                                    <SkeletonText noOfLines={1} w="120px" />
+                                                </FormLabel>
+                                                <Skeleton h="40px" />
+                                            </GridItem>
+                                        </CardBody>
+                                    </Flex>
+                                </Card>
+                                <Flex wrap="wrap" justifyContent="space-between">
+                                    {Array.from({ length: 5 }).map((_, index) => (
+                                        <Card key={index} maxW='lg' m={4} boxShadow={'xl'}>
+                                            <CardHeader>
+                                                <Flex spacing='4'>
+                                                    <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
+                                                        <SkeletonCircle size='40px' />
+                                                        <Box>
+                                                            <Skeleton height='20px' width='150px' mb='8px' />
+                                                            <Skeleton height='16px' width='200px' />
+                                                        </Box>
+                                                    </Flex>
+                                                </Flex>
+                                            </CardHeader>
+                                            <CardFooter>
+                                                <Stack direction='row' spacing={4}>
+                                                    <Skeleton height='32px' width='120px' />
+                                                    <Skeleton height='32px' width='120px' />
+                                                    <Skeleton height='32px' width='120px' />
+                                                </Stack>
+                                            </CardFooter>
+                                        </Card>
+                                    ))}
+                                </Flex>
+                            </Box>
                         ) : documentations?.length === 0 ? (
                             <Box>
                                 <Box textAlign="center" w="100%" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
@@ -136,19 +198,7 @@ const AreaPage = () => {
                                                 <Heading size='md'>
                                                     <Icon as={TbFilter} mr={2} /> Adicione os filtros
                                                 </Heading>
-                                                <Button
-                                                    mt={1}
-                                                    size="md"
-                                                    leftIcon={<Icon as={RiAddLine} />}
-                                                    bg={'gray.900'}
-                                                    color="#fff"
-                                                    _hover={{
-                                                        bg: `gray.900`,
-                                                    }}
-                                                    onClick={() => setIncludeModalOpen(true)}
-                                                >
-                                                    Cadastre um novo aqui
-                                                </Button>
+ 
                                             </Flex>
                                         </CardHeader>
                                         <Flex >
@@ -337,6 +387,6 @@ const AreaPage = () => {
     );
 };
 
-export default AreaPage;
+export default DocumentPage;
 
 

@@ -52,18 +52,20 @@ function IncludeProcessModal({ isOpen, onClose }: IncludeProcessModalType) {
         defaultValues: INITIAL_VALUES,
     });
 
-    const submitForm = async (data: typeof INITIAL_VALUES) => {
+    const submitForm = async (data: any) => {
         try {
             const request = {
-                processName: data.processName,
-                areas: data.areas,
-                responsables: data.responsables,
-                ferramentas: data.ferramentas,
-                processDescription: data.processDescription,
+                name: data.processName,
+                description: data.processDescription,
+                systems_tools: data.tools ? data.tools.split(",").map((tool: string) => tool.trim()) : [],
+                documentation: data.documentation,
+                responsible_people: [employers],
+                process_parent: process,
+                // responsible_people
             };
-            console.log(data)
-            return
-            // const response = await DevolutionHTTPService.create(request);
+            console.log(request)
+            const response = await ProcessHTTPService.create(data.areaId, request);
+            // return
 
             toast({
                 title: 'Processo incluído com sucesso!',
@@ -92,12 +94,17 @@ function IncludeProcessModal({ isOpen, onClose }: IncludeProcessModalType) {
     }, []);
 
     useEffect(() => {
+        getAllProcess();
+    }, [area]);
+
+    useEffect(() => {
         getAllEmployers();
     }, [area]);
     async function getAllArea() {
         try {
             const response = await AreaHTTPService.getNames();
             setAreaOptions(response.data);
+            console.log(response.data)
         } catch (error) {
             console.log(error);
         } finally {
@@ -121,8 +128,10 @@ function IncludeProcessModal({ isOpen, onClose }: IncludeProcessModalType) {
     async function getAllProcess() {
         try {
             const areaId = area || '';
+            console.log(area)
             if (areaId === '') return
-            const response = await ProcessHTTPService.getAll()
+            const response = await ProcessHTTPService.getAll(area)
+            console.log(response)
             setProcessOptions(response.data.list);
         } catch (error) {
             console.log(error);

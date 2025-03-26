@@ -1,5 +1,3 @@
-// app/components/SidebarWrapper.tsx
-
 import Sidebar from "./sidebar";
 import { cookies } from "next/headers";
 

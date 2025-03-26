@@ -47,9 +47,8 @@ type IncludeUserModalType = {
 
 
 
-interface RequestType { // Substitua RequestType pelo nome do seu tipo
-    areaIds?: string[]; // Torna areaIds opcional
-    // ... outras propriedades
+interface RequestType { 
+    areaIds?: string[]; 
     name?: string
     birthday?: string;
 

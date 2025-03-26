@@ -47,9 +47,10 @@ const AreaHTTPService: IAreaHTTPService = {
   },
 
   getOne: function (areaId: string): Promise<AxiosPromise<any>> {
+    const token = Cookies.get("access_token");
     return axiosApi.get(`/area/${areaId}`, {
       headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1MjFjZDRkNC1mNjhmLTQ0YmUtODUyNS02MjAwMmZlMTI3N2MiLCJlbWFpbCI6InRlc3RlQHRlc3RlLmNvbS5iciIsIm5hbWUiOiJJZ29yIENvc3RhIiwicm9sZSI6IkVNUExPWUVFUiIsImlhdCI6MTc0MjkyMzYwMSwiZXhwIjoxNzQzMDEwMDAxfQ.F94ikFRAlbxYEealbC2G6UhbiBlj1Zt71t_xlreumTk`,
+        Authorization: `Bearer token`,
       },
     });
   },
@@ -64,9 +65,10 @@ const AreaHTTPService: IAreaHTTPService = {
   },
 
   getEmployees: function (areaId: string): Promise<AxiosPromise<any>> {
+    const token = Cookies.get("access_token");
     return axiosApi.get(`/area/${areaId}/employers`, {
       headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1MjFjZDRkNC1mNjhmLTQ0YmUtODUyNS02MjAwMmZlMTI3N2MiLCJlbWFpbCI6InRlc3RlQHRlc3RlLmNvbS5iciIsIm5hbWUiOiJJZ29yIENvc3RhIiwicm9sZSI6IkVNUExPWUVFUiIsImlhdCI6MTc0MjkyMzYwMSwiZXhwIjoxNzQzMDEwMDAxfQ.F94ikFRAlbxYEealbC2G6UhbiBlj1Zt71t_xlreumTk`,
+        Authorization: `Bearer ${token}`,
       },
     });
   },

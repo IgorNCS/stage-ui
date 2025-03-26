@@ -1,4 +1,4 @@
-"use client"; // Adicione esta linha no topo do arquivo
+"use client";
 
 
 import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Icon, IconButton, Image, Menu, MenuButton, MenuItem, MenuList, Skeleton, SkeletonCircle, Stack, Text, VStack } from "@chakra-ui/react";
@@ -15,8 +15,8 @@ import IncludeAreaModal from "../components/forms/includeArea";
 import { RiAddLine } from "react-icons/ri";
 import Cookies from 'js-cookie';
 import UserHTTPService from "../lib/request/userHTTPService";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import { SiAlwaysdata } from "react-icons/si";
+import { BsFillDiagram3Fill, BsThreeDotsVertical } from "react-icons/bs";
+
 import { TbBooks } from "react-icons/tb";
 import { FaUsersSlash } from "react-icons/fa";
 import IncludeUserModal from "../components/forms/includeUser";
@@ -68,9 +68,7 @@ const UsersPage = () => {
             const response = await UserHTTPService.getAll({ page: 1, limit: 100 });
             console.log(response)
             const list = response.data.list;
-            const newList = [...list, ...list, ...list];
-            console.log('newList', newList);
-            setUsers(newList); // Usando a newList
+            setUsers(list);
         } catch (error) {
             console.log(error);
         } finally {
@@ -191,7 +189,7 @@ const UsersPage = () => {
                                                     },
                                                 }}
                                             >
-                                                <Button flex='1' variant='ghost' leftIcon={<SiAlwaysdata />}>
+                                                <Button flex='1' variant='ghost' leftIcon={<BsFillDiagram3Fill />}>
                                                     Processos
                                                 </Button>
                                                 <Button flex='1' variant='ghost' leftIcon={<TbBooks />}>

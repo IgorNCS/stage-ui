@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   let user = null;
 
-  if (typeof window !== "undefined") { // Verifica se está no lado do cliente
+  if (typeof window !== "undefined") {
     const userString = localStorage.getItem("user");
 
     if (userString) {
