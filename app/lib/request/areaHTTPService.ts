@@ -50,7 +50,7 @@ const AreaHTTPService: IAreaHTTPService = {
     const token = Cookies.get("access_token");
     return axiosApi.get(`/area/${areaId}`, {
       headers: {
-        Authorization: `Bearer token`,
+        Authorization: `Bearer ${token}`,
       },
     });
   },
