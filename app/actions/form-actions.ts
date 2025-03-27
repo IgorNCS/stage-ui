@@ -1,10 +1,10 @@
 "use server";
 
-import { LoginFormSchema, SignupFormSchema } from "../lib/definitions";
+import { LoginFormSchema, SignupFormSchema } from "../../lib/definitions";
 import setCookieParser from "set-cookie-parser";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { axiosApi } from "../lib/axios";
+import { axiosApi } from "../../lib/axios";
 
 export const loginAction = async (prevState: unknown, formData: FormData) => {
 

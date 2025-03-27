@@ -2,7 +2,7 @@
 import CombinedBarChart from "@/Components/Charts/HorizontalBarChart";
 import PieChart from "@/Components/Charts/PieCharts";
 // import AreaHTTPService from "@/app/lib/request/processHTTPService";
-import SprintHTTPService from "@/app/lib/request/sprintHTTPService";
+import SprintHTTPService from "@/lib/request/sprintHTTPService";
 import { Badge, Box, Button, Card, CardBody, CardFooter, CardHeader, Center, Container, Divider, Flex, Grid, Heading, Icon, Image, Spacer, Stack, Table, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -13,7 +13,7 @@ import { TbBooks } from "react-icons/tb";
 
 import { RiAddLine } from "react-icons/ri";
 import { BsFillDiagram3Fill } from "react-icons/bs";
-import ProcessHTTPService from "@/app/lib/request/processHTTPService";
+import ProcessHTTPService from "@/lib/request/processHTTPService";
 import DragHandleNode from "@/Components/node/DragHandleNode";
 import { ReactFlow } from "@xyflow/react";
 

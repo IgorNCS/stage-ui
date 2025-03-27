@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { axiosApi } from "../lib/axios";
+import { axiosApi } from "../../lib/axios";
 import Sidebar from "../../Components/sidebar";
 import SidebarWrapper from "../../Components/SidebarWrapper";
 import { Box } from "@chakra-ui/react";

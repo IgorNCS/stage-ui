@@ -21,8 +21,8 @@ import { useEffect, useState } from 'react';
 import { MultiSelect } from 'chakra-multiselect';
 import { useForm } from 'react-hook-form';
 import { AxiosError } from 'axios';
-import AreaHTTPService from '@/app/lib/request/areaHTTPService';
-import ProcessHTTPService from '@/app/lib/request/processHTTPService';
+import AreaHTTPService from '@/lib/request/areaHTTPService';
+import ProcessHTTPService from '@/lib/request/processHTTPService';
 
 type IncludeProcessModalType = {
     isOpen: boolean;

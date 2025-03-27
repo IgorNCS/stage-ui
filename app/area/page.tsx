@@ -6,7 +6,7 @@ import { Flex, Spacer } from '@chakra-ui/react'
 import { Divider } from '@chakra-ui/react'
 import { Heading } from '@chakra-ui/react'
 import { useEffect, useState } from "react";
-import AreaHTTPService from "../lib/request/areaHTTPService";
+import AreaHTTPService from "../../lib/request/areaHTTPService";
 import { MdNotificationsOff } from "react-icons/md";
 import Link from "next/link";
 import { IoMdMap } from "react-icons/io";

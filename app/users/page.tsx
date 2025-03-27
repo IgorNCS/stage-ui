@@ -6,7 +6,7 @@ import { Flex, Spacer } from '@chakra-ui/react'
 import { Divider } from '@chakra-ui/react'
 import { Heading } from '@chakra-ui/react'
 import { useEffect, useState } from "react";
-import AreaHTTPService from "../lib/request/areaHTTPService";
+import AreaHTTPService from "../../lib/request/areaHTTPService";
 import { MdDeleteForever, MdEdit, MdNotificationsOff } from "react-icons/md";
 import Link from "next/link";
 import { IoMdMap } from "react-icons/io";
@@ -14,7 +14,7 @@ import { TbMapOff } from "react-icons/tb";
 import IncludeAreaModal from "../../Components/forms/includeArea";
 import { RiAddLine } from "react-icons/ri";
 import Cookies from 'js-cookie';
-import UserHTTPService from "../lib/request/userHTTPService";
+import UserHTTPService from "../../lib/request/userHTTPService";
 import { BsFillDiagram3Fill, BsThreeDotsVertical } from "react-icons/bs";
 
 import { TbBooks } from "react-icons/tb";

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import "./lib/axios";
+import "../lib/axios";
 import { Providers } from "./providers";
 import SidebarWrapper from "../Components/SidebarWrapper";
 import { ChakraProvider } from "@chakra-ui/react";

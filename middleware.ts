@@ -1,6 +1,6 @@
 import { MiddlewareConfig, NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { validateAuth } from "./app/lib/validateAuth";
+import { validateAuth } from "./lib/validateAuth";
 
 export const middleware = async (req: NextRequest) => {
 
