@@ -11,7 +11,7 @@ import { MdDeleteForever, MdEdit, MdNotificationsOff } from "react-icons/md";
 import Link from "next/link";
 import { IoMdMap } from "react-icons/io";
 import { TbMapOff } from "react-icons/tb";
-import IncludeAreaModal from "../components/forms/includeArea";
+import IncludeAreaModal from "../../components/forms/includeArea";
 import { RiAddLine } from "react-icons/ri";
 import Cookies from 'js-cookie';
 import UserHTTPService from "../lib/request/userHTTPService";
@@ -19,7 +19,7 @@ import { BsFillDiagram3Fill, BsThreeDotsVertical } from "react-icons/bs";
 
 import { TbBooks } from "react-icons/tb";
 import { FaUsersSlash } from "react-icons/fa";
-import IncludeUserModal from "../components/forms/includeUser";
+import IncludeUserModal from "../../components/forms/includeUser";
 
 
 
