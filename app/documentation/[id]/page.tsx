@@ -12,9 +12,9 @@ import { MdNotificationsOff } from "react-icons/md";
 import { TbMapOff, TbRoadOff, TbNotebookOff } from "react-icons/tb";
 import { format } from 'date-fns';
 import { IoMdEye } from "react-icons/io";
-import IncludeProcessModal from "@/app/components/forms/includeProcess";
+import IncludeProcessModal from "@/app/(components)/forms/includeProcess";
 import { RiAddLine } from "react-icons/ri";
-import IncludeDocumentationModal from "@/app/components/forms/includeDocumentation";
+import IncludeDocumentationModal from "@/app/(components)/forms/includeDocumentation";
 
 
 

@@ -14,7 +14,7 @@ import { TbBooks } from "react-icons/tb";
 import { RiAddLine } from "react-icons/ri";
 import { BsFillDiagram3Fill } from "react-icons/bs";
 import ProcessHTTPService from "@/app/(lib)/request/processHTTPService";
-import DragHandleNode from "@/app/components/node/DragHandleNode";
+import DragHandleNode from "@/app/(components)/node/DragHandleNode";
 import { ReactFlow } from "@xyflow/react";
 
 import React from 'react';

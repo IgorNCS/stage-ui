@@ -17,13 +17,13 @@ import dynamic from "next/dynamic";
 
 import * as commands from "@uiw/react-md-editor/commands"
 import { RiAddLine } from "react-icons/ri";
-import IncludeDocumentationModal from "../components/forms/includeDocumentation";
+import IncludeDocumentationModal from "../(components)/forms/includeDocumentation";
 import DocumentationHTTPService from "@/app/(lib)/request/documentationHTTPService";
 
 
 import { IoMdEye } from "react-icons/io";
-import ViewDocumentationModal from "../components/forms/modalViewDocumentation";
-import MarkdownRenderer from "../components/markdownrender";
+import ViewDocumentationModal from "../(components)/forms/modalViewDocumentation";
+import MarkdownRenderer from "../(components)/markdownrender";
 
 const MDEditor = dynamic(
     () => import("@uiw/react-md-editor"),

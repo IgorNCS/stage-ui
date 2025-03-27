@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "@/app/(lib)/axios";
 import { Providers } from "./providers";
-import SidebarWrapper from "./components/SidebarWrapper";
+import SidebarWrapper from "./(components)/SidebarWrapper";
 import { ChakraProvider } from "@chakra-ui/react";
 
 const geistSans = Geist({
