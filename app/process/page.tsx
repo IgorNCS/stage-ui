@@ -14,7 +14,7 @@ import { TbMapOff } from "react-icons/tb";
 
 import { RiAddLine } from "react-icons/ri";
 import Cookies from 'js-cookie';
-import IncludeProcessModal from "../../components/forms/includeProcess";
+import IncludeProcessModal from "../../Components/forms/includeProcess";
 import ProcessHTTPService from "../lib/request/processHTTPService";
 import { BsFillDiagram3Fill } from "react-icons/bs";
 

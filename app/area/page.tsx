@@ -11,7 +11,7 @@ import { MdNotificationsOff } from "react-icons/md";
 import Link from "next/link";
 import { IoMdMap } from "react-icons/io";
 import { TbMapOff } from "react-icons/tb";
-import IncludeAreaModal from "../../components/forms/includeArea";
+import IncludeAreaModal from "../../Components/forms/includeArea";
 import { RiAddLine } from "react-icons/ri";
 import Cookies from 'js-cookie';
 

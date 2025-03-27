@@ -1,6 +1,6 @@
 "use client";
-import CombinedBarChart from "@/app/Charts/HorizontalBarChart";
-import PieChart from "@/app/Charts/PieCharts";
+import CombinedBarChart from "@/Components/Charts/HorizontalBarChart";
+import PieChart from "@/Components/Charts/PieCharts";
 import AreaHTTPService from "@/app/lib/request/areaHTTPService";
 import SprintHTTPService from "@/app/lib/request/sprintHTTPService";
 import { Badge, Box, Button, Card, CardBody, CardFooter, Center, Divider, Flex, Heading, Icon, Image, Spacer, Stack, Table, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";

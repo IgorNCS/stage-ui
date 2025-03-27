@@ -1,7 +1,7 @@
 // app/produtos/[id]/page.js
 "use client";
-import CombinedBarChart from "@/app/Charts/HorizontalBarChart";
-import PieChart from "@/app/Charts/PieCharts";
+import CombinedBarChart from "@/Components/Charts/HorizontalBarChart";
+import PieChart from "@/Components/Charts/PieCharts";
 import AreaHTTPService from "@/app/lib/request/areaHTTPService";
 import SprintHTTPService from "@/app/lib/request/sprintHTTPService";
 import { Badge, Box, Button, Card, CardBody, CardFooter, Divider, Flex, Heading, Icon, Image, Progress, Spacer, Stack, Table, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
@@ -12,9 +12,9 @@ import { MdNotificationsOff } from "react-icons/md";
 import { TbMapOff, TbRoadOff, TbNotebookOff } from "react-icons/tb";
 import { format } from 'date-fns';
 import { IoMdEye } from "react-icons/io";
-import IncludeProcessModal from "@/components/forms/includeProcess";
+import IncludeProcessModal from "@/Components/forms/includeProcess";
 import { RiAddLine } from "react-icons/ri";
-import IncludeDocumentationModal from "@/components/forms/includeDocumentation";
+import IncludeDocumentationModal from "@/Components/forms/includeDocumentation";
 
 
 
