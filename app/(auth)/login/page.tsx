@@ -1,4 +1,4 @@
-import { loginAction } from "@/app/actions/form-actions";
+import { loginAction } from "@/app/(actions)/form-actions";
 import AuthForm from "../AuthForm";
 
 const Login = () => {
