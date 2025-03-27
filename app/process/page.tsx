@@ -6,7 +6,7 @@ import { Flex, Spacer } from '@chakra-ui/react'
 import { Divider } from '@chakra-ui/react'
 import { Heading } from '@chakra-ui/react'
 import { useEffect, useState } from "react";
-import AreaHTTPService from "../../lib/request/areaHTTPService";
+import AreaHTTPService from "@/app/(lib)/request/areaHTTPService";
 import { MdNotificationsOff } from "react-icons/md";
 import Link from "next/link";
 import { IoMdMap } from "react-icons/io";
@@ -15,7 +15,7 @@ import { TbMapOff } from "react-icons/tb";
 import { RiAddLine } from "react-icons/ri";
 import Cookies from 'js-cookie';
 import IncludeProcessModal from "../components/forms/includeProcess";
-import ProcessHTTPService from "../lib/request/processHTTPService";
+import ProcessHTTPService from "@/app/(lib)/request/processHTTPService";
 import { BsFillDiagram3Fill } from "react-icons/bs";
 
 

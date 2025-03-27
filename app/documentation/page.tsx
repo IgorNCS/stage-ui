@@ -6,7 +6,7 @@ import { Flex, Spacer } from '@chakra-ui/react'
 import { Divider } from '@chakra-ui/react'
 import { Heading } from '@chakra-ui/react'
 import { useEffect, useState } from "react";
-import AreaHTTPService from "../../lib/request/areaHTTPService";
+import AreaHTTPService from "@/app/(lib)/request/areaHTTPService";
 import { MdNotificationsOff } from "react-icons/md";
 import Link from "next/link";
 import { TbBooksOff, TbFilter } from "react-icons/tb";
@@ -18,7 +18,7 @@ import dynamic from "next/dynamic";
 import * as commands from "@uiw/react-md-editor/commands"
 import { RiAddLine } from "react-icons/ri";
 import IncludeDocumentationModal from "../components/forms/includeDocumentation";
-import DocumentationHTTPService from "../lib/request/documentationHTTPService";
+import DocumentationHTTPService from "@/app/(lib)/request/documentationHTTPService";
 
 
 import { IoMdEye } from "react-icons/io";

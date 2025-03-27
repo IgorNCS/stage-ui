@@ -2,8 +2,8 @@
 "use client";
 import CombinedBarChart from "@/Components/Charts/HorizontalBarChart";
 import PieChart from "@/Components/Charts/PieCharts";
-import AreaHTTPService from "@/lib/request/areaHTTPService";
-import SprintHTTPService from "@/lib/request/sprintHTTPService";
+import AreaHTTPService from "@/app/(lib)/request/areaHTTPService";
+import SprintHTTPService from "@/app/(lib)/request/sprintHTTPService";
 import { Badge, Box, Button, Card, CardBody, CardFooter, Divider, Flex, Heading, Icon, Image, Progress, Spacer, Stack, Table, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
 import Link from "next/link";
 import { useParams } from "next/navigation";

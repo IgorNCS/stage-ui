@@ -24,14 +24,14 @@ import { useEffect, useState } from 'react';
 import { MultiSelect } from 'chakra-multiselect';
 import { useForm } from 'react-hook-form';
 import { AxiosError } from 'axios';
-import AreaHTTPService from '@/lib/request/areaHTTPService';
-import ProcessHTTPService from '@/lib/request/processHTTPService';
+import AreaHTTPService from '@/app/(lib)/request/areaHTTPService';
+import ProcessHTTPService from '@/app/(lib)/request/processHTTPService';
 
 import "@uiw/react-md-editor/markdown-editor.css";
 import "@uiw/react-markdown-preview/markdown.css";
 import dynamic from "next/dynamic";
 import { IoMdCloseCircleOutline } from 'react-icons/io';
-import DocumentationHTTPService, { IDocumentCreate } from '@/lib/request/documentationHTTPService';
+import DocumentationHTTPService, { IDocumentCreate } from '@/app/(lib)/request/documentationHTTPService';
 
 
 const MDEditor = dynamic(

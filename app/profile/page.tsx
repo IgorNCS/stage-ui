@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import ProfileCard from "./ProfileCard";
-import { axiosApi } from "../../lib/axios";
+import { axiosApi } from "@/app/(lib)/axios";
 
 type Response = {
   message: string;
