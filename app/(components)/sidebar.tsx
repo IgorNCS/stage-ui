@@ -14,9 +14,11 @@ import Cookies from 'js-cookie';
 import { useEffect, useState } from "react";
 
 export default function Sidebar({ userCookie }: { userCookie: string | null }) {
-  const { onClose } = useDisclosure();
+  const { isOpen, onClose } = useDisclosure(); // Mantenha useDisclosure()
+
   const router = useRouter();
   const pathname = usePathname();
+
   const bg = useColorModeValue("gray.900", "gray.100");
   const [useCookie, setUseCookie] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -36,8 +38,6 @@ export default function Sidebar({ userCookie }: { userCookie: string | null }) {
   }, [userCookie]);
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
     Cookies.remove('user');
     Cookies.remove('token');
     setUseCookie('');
@@ -78,7 +78,10 @@ export default function Sidebar({ userCookie }: { userCookie: string | null }) {
         py={4}
         px={4}
       >
-        <Link href="/" onClick={onClose} margin={'auto'}>
+        <Link 
+        href="/" 
+        // onClick={onClose} 
+        margin={'auto'}>
           <Avatar
             name={meuUser.name}
             color='gray.900'
@@ -98,20 +101,19 @@ export default function Sidebar({ userCookie }: { userCookie: string | null }) {
       >
         <Link
           href="/"
-          onClick={onClose}
+          // onClick={onClose}
           borderRadius="md"
           py={2}
           px={4}
           mb={2}
           _hover={{ bg: useColorModeValue("gray.500", "gray.500") }}
           fontWeight="bold"
-          isActive={router.pathname === "/"}
+          sx={{ color: pathname === "/" ? "blue.500" : undefined }}
         >
           Home
         </Link>
 
-        {/* Outros Links */}
-        <Link
+        {/* <Link
           href="/dashboard"
           onClick={onClose}
           borderRadius="md"
@@ -120,63 +122,65 @@ export default function Sidebar({ userCookie }: { userCookie: string | null }) {
           mb={2}
           _hover={{ bg: useColorModeValue("gray.500", "gray.500") }}
           fontWeight="bold"
-          isActive={router.pathname === "/dashboard"}
+          aria-current={pathname === "/dashboard" ? "page" : undefined} 
         >
           Dashboard
-        </Link>
+        </Link> */}
 
         <Link
           href="/profile"
-          onClick={onClose}
+          // onClick={onClose}
           borderRadius="md"
           py={2}
           px={4}
           mb={2}
           _hover={{ bg: useColorModeValue("gray.500", "gray.500") }}
           fontWeight="bold"
-          isActive={router.pathname === "/profile"}
+          sx={{ color: pathname === "/profile" ? "blue.500" : undefined }}
         >
           Profile
         </Link>
 
+        
+
         <Link
           href="/area"
-          onClick={onClose}
+          // onClick={onClose}
           borderRadius="md"
           py={2}
           px={4}
           mb={2}
           _hover={{ bg: useColorModeValue("gray.500", "gray.500") }}
           fontWeight="bold"
-          isActive={router.pathname === "/area"}
+          sx={{ color: pathname === "/area" ? "blue.500" : undefined }}
         >
           Areas
         </Link>
 
         <Link
           href="/process"
-          onClick={onClose}
+          // onClick={onClose}
           borderRadius="md"
           py={2}
           px={4}
           mb={2}
           _hover={{ bg: useColorModeValue("gray.500", "gray.500") }}
           fontWeight="bold"
-          isActive={router.pathname === "/process"}
+          sx={{ color: pathname === "/process" ? "blue.500" : undefined }}
         >
           Processos
         </Link>
 
         <Link
           href="/documentation"
-          onClick={onClose}
+          // onClick={onClose}
           borderRadius="md"
           py={2}
           px={4}
           mb={2}
           _hover={{ bg: useColorModeValue("gray.500", "gray.500") }}
           fontWeight="bold"
-          isActive={router.pathname === "/documentation"}
+          sx={{ color: pathname === "/documentation" ? "blue.500" : undefined }}
         >
           Documentações
         </Link>
@@ -184,14 +188,14 @@ export default function Sidebar({ userCookie }: { userCookie: string | null }) {
         {meuUser.role == 'ADMIN' && (
           <Link
             href="/users"
-            onClick={onClose}
+            // onClick={onClose}
             borderRadius="md"
             py={2}
             px={4}
             mb={2}
             _hover={{ bg: useColorModeValue("gray.500", "gray.500") }}
             fontWeight="bold"
-            isActive={router.pathname === "/users"}
+            sx={{ color: pathname === "/users" ? "blue.500" : undefined }}
           >
             Usuários
           </Link>
