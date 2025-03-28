@@ -5,6 +5,7 @@ import "@/app/(lib)/axios";
 import { Providers } from "./providers";
 import SidebarWrapper from "./(components)/SidebarWrapper";
 import { ChakraProvider } from "@chakra-ui/react";
+import { cookies } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,19 +27,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  let user = null;
-
-  if (typeof window !== "undefined") {
-    const userString = localStorage.getItem("user");
-
-    if (userString) {
-      try {
-        user = JSON.parse(userString);
-      } catch (error) {
-        console.error("Erro ao analisar o usuário do localStorage:", error);
-      }
-    }
-  }
+  
+  const cookieStore = cookies();
 
   return (
     <html lang="en">
