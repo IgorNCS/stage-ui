@@ -6,9 +6,10 @@ export const middleware = async (req: NextRequest) => {
   const cookieStore = await cookies();
   const access_token = cookieStore.get("access_token")?.value;
   const path = req.nextUrl.pathname;
+
+
   if (!access_token && path !== "/login" && path !== "/register") {
     const url = req.nextUrl.clone();
-    url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
@@ -34,6 +35,15 @@ export const middleware = async (req: NextRequest) => {
   return NextResponse.next();
 };
 
-// export const config: MiddlewareConfig = {
-
-// };
+export const config: MiddlewareConfig = {
+  matcher: [
+      /*
+       * Match all request paths except for:
+       * - static files (static/...)
+       * - favicon.ico
+       * - manifest.json
+       * - all routes beginning with _next
+       */
+      '/((?!static|favicon.ico|manifest.json|_next).*)',
+  ],
+};
