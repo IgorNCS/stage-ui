@@ -5,7 +5,7 @@ export default async function SidebarWrapper() {
   const cookieStore = cookies();
   let userCookie: string | null = null;
 
-  const userCookieObj = cookieStore.get("user");
+  const userCookieObj = (await cookieStore).get("user");
   if (userCookieObj) {
     userCookie = userCookieObj.value;
   }

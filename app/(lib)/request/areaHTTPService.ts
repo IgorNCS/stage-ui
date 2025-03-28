@@ -36,8 +36,6 @@ const AreaHTTPService: IAreaHTTPService = {
       if (search) params.append("search", search);
       if (role) params.append("role", role);
     }
-    console.log(params, params.toString());
-    console.log(`/area?${params.toString()}`);
     const token = Cookies.get("access_token");
     return axiosApi.get(`/area?${params.toString()}`, {
       headers: {

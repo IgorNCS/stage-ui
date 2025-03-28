@@ -120,11 +120,11 @@ function IncludeAreaModal({ isOpen, onClose }: IncludeAreaModalType) {
         try {
 
             const response = await AreaHTTPService.getAll();
-            console.log(response)
+            
             setAreas(response.data.list);
             onClose();
         } catch (error: AxiosError | any) {
-            console.log(error)
+            // console.log(error)
             const display = error.response?.data?.message || 'Erro ao buscar area.';
             toast({
                 title: display,

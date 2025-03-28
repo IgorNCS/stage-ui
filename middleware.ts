@@ -3,23 +3,37 @@ import { cookies } from "next/headers";
 import { validateAuth } from "./app/(lib)/validateAuth";
 
 export const middleware = async (req: NextRequest) => {
-
   const cookieStore = await cookies();
-  if (!cookieStore.get("refresh_token")) {
+  const access_token = cookieStore.get("access_token")?.value;
+  const path = req.nextUrl.pathname;
+  if (!access_token && path !== "/login" && path !== "/register") {
     const url = req.nextUrl.clone();
-    url.pathname = "/auth/login";
+    url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
-  const authData = await validateAuth();
-  if (!authData || !authData.success) {
+  if (access_token && (path === "/login" || path === "/register")) {
     const url = req.nextUrl.clone();
-    url.pathname = "/auth/login";
+    url.pathname = "/area";
     return NextResponse.redirect(url);
   }
+
+  // const authData = await validateAuth();
+  // if (!authData || !authData.success) {
+  //   const url = req.nextUrl.clone();
+  //   url.pathname = "/login";
+  //   return NextResponse.redirect(url);
+  // }
+
+  // const authData = await validateAuth();
+  // if (!authData || !authData.success) {
+  //   const url = req.nextUrl.clone();
+  //   url.pathname = "/login";
+  //   return NextResponse.redirect(url);
+  // }
   return NextResponse.next();
 };
 
-export const config: MiddlewareConfig = {
-  matcher: "/dashboard",
-};
+// export const config: MiddlewareConfig = {
+
+// };
